@@ -40,8 +40,7 @@ app.use('/accounts', accountRouter);
 app.use('/categories', categoryRouter);
 // app.use('/', indexRouter);
 app.get('*', (req,res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.js'));
-  // res.sendFile(index);
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 })
 
 // catch 404 and forward to error handler
