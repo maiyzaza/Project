@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var port = process.env.PORT || 3000;
 require('dotenv').config()
 require('./db/db.js')
 
@@ -57,6 +58,10 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.listen(port, "0.0.0.0", function() {
+  console.log("Listening on Port 3000");
 });
 
 module.exports = app;
