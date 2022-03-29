@@ -16,6 +16,7 @@ var quotationRouter = require('./routes/quotations');
 
 var accountRouter = require('./routes/accounts');
 var categoryRouter = require('./routes/categories');
+var transectionRouter = require('./routes/transections');
 
 var app = express();
 app.use(cors());
@@ -39,6 +40,7 @@ app.use('/quotations', quotationRouter);
 
 app.use('/accounts', accountRouter);
 app.use('/categories', categoryRouter);
+app.use('/transections', transectionRouter);
 // app.use('/', indexRouter);
 app.get('*', (req,res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
