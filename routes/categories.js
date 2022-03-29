@@ -10,7 +10,7 @@ router.get("/", (req, res, next) => {
       console.debug("Hey Look! Error", err);
       res.json(err);
     } else {
-      res.json("asasdasdasd");
+      res.json(result);
     }
   });
 });
