@@ -21,13 +21,13 @@ router.get("/", (req, res, next) => {
 router.post("/", (req, res, next) => {
   console.debug(req.body);
   const data = req.body;
-  const product1 = new Product({
+  const transection1 = new Transections({
     code: data.code,
-    name: data.name,
-    price: data.price,
-    remainingStock: data.remainingStock
+    categoryName: data.categoryName,
+    amount: data.amount,
+    createAt: data.createAt
   });
-  product1.save((err, newInstance) => {
+  transection1.save((err, newInstance) => {
     if (err) {
       console.error("Hey look, Error!", err);
       res.json(err);
@@ -37,23 +37,9 @@ router.post("/", (req, res, next) => {
   });
 });
 
-// router.delete("/", (req, res, next) => {
-//   const id = req.body._id;
-//   console.debug(id);
-//   Product.findByIdAndDelete(id, (err, doc) => {
-//     if (err) {
-//       console.error("Hey look, Error!", err);
-//       res.json(err);
-//     } else {
-//       res.status(200).json(doc);
-//     }
-//   });
-// });
-
 router.delete("/:id", (req, res, next) => {
   const id = req.params.id;
-  console.debug(id);
-  Product.findByIdAndDelete(id, (err, doc) => {
+  Transections.findByIdAndDelete(id, (err, doc) => {
     if (err) {
       console.error("Hey look, Error!", err);
       res.json(err);
@@ -64,28 +50,15 @@ router.delete("/:id", (req, res, next) => {
 });
 
 router.put("/", async (req, res, next) => {
-  console.debug(req.body);
   const data = req.body;
+  var transection1 = await Transections.findOne({ _id: data._id });
+  transection1.code = data.code;
+  transection1.categoryName = data.categoryName;
+  transection1.amount = data.amount;
+  transection1.createAt = data.createAt;
 
-  // Product.findOneAndUpdate({ code: data.code }, data, (err, doc) => {
-  //   if (err) {
-  //     console.error("Hey look, Error!", err);
-  //     res.json(err);
-  //   } else {
-  //     res.status(200).json(doc);
-  //   }
-  // });
-  // or findOne(), set values, then save()
-
-  //update whole object or partially (PATCH)
-  Product.findByIdAndUpdate(data._id, data, {new: true},(err, doc) => {
-    if (err) {
-      console.error("Hey look, Error!", err);
-      res.json(err);
-    } else {
-      res.status(200).json(doc);
-    }
-  });
+  await transection1.save();
+  res.status(200).json(transection1);
 });
 
 
