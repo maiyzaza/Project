@@ -47,9 +47,10 @@ router.delete("/:id", (req, res, next) => {
   });
 });
 
-router.put("/", async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   const data = req.body;
-  var transection1 = await Transections.findOne({ _id: data._id });
+  const id = req.params.id;
+  var transection1 = await Transections.findOne({ _id: id });
   transection1.code = data.code;
   transection1.categoryName = data.categoryName;
   transection1.amount = data.amount;
