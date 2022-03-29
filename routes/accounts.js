@@ -5,17 +5,17 @@ var Product = require("../db/models/products");
 var Account = require("../db/models/accounts")
 
 /* GET products listing. */
-// router.get("/", (req, res, next) => {
-//   Product.find({}, (err, result) => {
-//     if (err) {
-//       console.debug("Hey Look! Error", err);
-//       res.json(err);
-//     } else {
-//       // console.log(res);
-//       res.json(result);
-//     }
-//   });
-// });
+router.get("/", (req, res, next) => {
+  Account.find({}, (err, result) => {
+    if (err) {
+      console.debug("Hey Look! Error", err);
+      res.json(err);
+    } else {
+      // console.log(res);
+      res.json(result);
+    }
+  });
+});
 
 // Create new account
 router.post("/", (req, res, next) => {
