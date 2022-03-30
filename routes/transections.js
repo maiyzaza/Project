@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 const mongoose = require("mongoose");
 var Transections = require("../db/models/transections");
-import { groupBy } from '@progress/kendo-data-query';
 
 /* GET products listing. */
 router.get("/", (req, res, next) => {
