@@ -32,7 +32,7 @@ router.get("/day", (req, res, next) => {
           x.push(currentValue)
         }
       }
-      res.json(dateNow);
+      res.json(x);
     }
   });
 });
