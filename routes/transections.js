@@ -16,7 +16,9 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/day", (req, res, next) => {
-  const dateNow = new Date().toString().slice(0, 9)
+  const dateNowYear = new Date().getFullYear()
+  const dateNowMonth = new Date().getMonth()
+  const dateNowDate = new Date().getDate()
   Transections.find({}, (err, result) => {
     if (err) {
       console.debug("Hey Look! Error", err);
@@ -25,7 +27,7 @@ router.get("/day", (req, res, next) => {
       var x = []
       for (let i = 0; i < result.length; i++) {
         var currentValue = result[i];
-        if (currentValue.createAt.toString().slice(0, 9) === dateNow)
+        if (currentValue.createAt.getFullYear() === dateNowYear && currentValue.createAt.getMonth() === dateNowMonth && currentValue.createAt.getDate() === dateNowDate)
         {
           x.push(currentValue)
         }
@@ -36,7 +38,8 @@ router.get("/day", (req, res, next) => {
 });
 
 router.get("/month", (req, res, next) => {
-  const dateNow = new Date().toString().slice(0, 6)
+  const dateNowYear = new Date().getFullYear()
+  const dateNowMonth = new Date().getMonth()
   Transections.find({}, (err, result) => {
     if (err) {
       console.debug("Hey Look! Error", err);
@@ -45,17 +48,17 @@ router.get("/month", (req, res, next) => {
       var x = []
       for (let i = 0; i < result.length; i++) {
         var currentValue = result[i];
-        if (currentValue.createAt.toString().slice(0, 6) === dateNow)
+        if (currentValue.createAt.getFullYear() === dateNowYear && currentValue.createAt.getMonth() === dateNowMonth)
         {
           x.push(currentValue)
         }
       }
-      res.json(dateNow);
+      res.json(x);
     }
   });
 });
 router.get("/year", (req, res, next) => {
-  const dateNow = new Date().toString().slice(0, 3)
+  const dateNowYear = new Date().getFullYear()
   Transections.find({}, (err, result) => {
     if (err) {
       console.debug("Hey Look! Error", err);
@@ -64,12 +67,12 @@ router.get("/year", (req, res, next) => {
       var x = []
       for (let i = 0; i < result.length; i++) {
         var currentValue = result[i];
-        if (currentValue.createAt.toString().slice(0, 3) === dateNow)
+        if (currentValue.createAt.getFullYear() === dateNowYear)
         {
           x.push(currentValue)
         }
       }
-      res.json(dateNow);
+      res.json(x);
     }
   });
 });
