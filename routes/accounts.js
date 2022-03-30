@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
 const mongoose = require("mongoose");
-var Product = require("../db/models/products");
 var Account = require("../db/models/accounts")
 
 /* GET products listing. */
