@@ -9,10 +9,6 @@ require('dotenv').config()
 require('./db/db.js')
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var productsRouter = require('./routes/products');
-var customerRouter = require('./routes/customers');
-var quotationRouter = require('./routes/quotations');
 
 var accountRouter = require('./routes/accounts');
 var categoryRouter = require('./routes/categories');
@@ -33,11 +29,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Plug router
  // root server
-app.use('/users', usersRouter);
-app.use('/products', productsRouter);
-app.use('/customers',customerRouter);
-app.use('/quotations', quotationRouter);
-
 app.use('/accounts', accountRouter);
 app.use('/categories', categoryRouter);
 app.use('/transections', transectionRouter);
