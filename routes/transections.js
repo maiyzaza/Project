@@ -30,7 +30,7 @@ router.get("/day", (req, res, next) => {
           x.push(currentValue)
         }
       }
-      res.json(x);
+      res.json(dateNow);
     }
   });
 });
@@ -50,7 +50,7 @@ router.get("/month", (req, res, next) => {
           x.push(currentValue)
         }
       }
-      res.json(x);
+      res.json(dateNow);
     }
   });
 });
@@ -69,7 +69,7 @@ router.get("/year", (req, res, next) => {
           x.push(currentValue)
         }
       }
-      res.json(x);
+      res.json(dateNow);
     }
   });
 });
