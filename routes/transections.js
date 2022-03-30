@@ -3,6 +3,7 @@ var router = express.Router();
 const mongoose = require("mongoose");
 var Product = require("../db/models/products");
 var Transections = require("../db/models/transections");
+import { groupBy } from '@progress/kendo-data-query';
 
 /* GET products listing. */
 router.get("/", (req, res, next) => {
@@ -12,6 +13,26 @@ router.get("/", (req, res, next) => {
       res.json(err);
     } else {
       res.json(result);
+    }
+  });
+});
+
+router.get("/day", (req, res, next) => {
+  const dateNow = new Date().toString().slice(0, 9)
+  Transections.find({}, (err, result) => {
+    if (err) {
+      console.debug("Hey Look! Error", err);
+      res.json(err);
+    } else {
+      var x = []
+      for (let i = 0; i < result.length; i++) {
+        var currentValue = result[i];
+        if (currentValue.createAt.toString().slice(0, 9) === dateNow)
+        {
+          x.push(currentValue)
+        }
+      }
+      res.json(x);
     }
   });
 });
