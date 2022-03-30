@@ -35,6 +35,45 @@ router.get("/day", (req, res, next) => {
   });
 });
 
+router.get("/month", (req, res, next) => {
+  const dateNow = new Date().toString().slice(0, 6)
+  Transections.find({}, (err, result) => {
+    if (err) {
+      console.debug("Hey Look! Error", err);
+      res.json(err);
+    } else {
+      var x = []
+      for (let i = 0; i < result.length; i++) {
+        var currentValue = result[i];
+        if (currentValue.createAt.toString().slice(0, 6) === dateNow)
+        {
+          x.push(currentValue)
+        }
+      }
+      res.json(x);
+    }
+  });
+});
+router.get("/year", (req, res, next) => {
+  const dateNow = new Date().toString().slice(0, 3)
+  Transections.find({}, (err, result) => {
+    if (err) {
+      console.debug("Hey Look! Error", err);
+      res.json(err);
+    } else {
+      var x = []
+      for (let i = 0; i < result.length; i++) {
+        var currentValue = result[i];
+        if (currentValue.createAt.toString().slice(0, 3) === dateNow)
+        {
+          x.push(currentValue)
+        }
+      }
+      res.json(x);
+    }
+  });
+});
+
 // Create new product
 router.post("/", (req, res, next) => {
   const data = req.body;
